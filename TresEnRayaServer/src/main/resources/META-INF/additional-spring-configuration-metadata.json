@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "jwt.secret",
+    "type": "java.lang.String",
+    "description": "The secret for getting the token payload"
+  },
+  {
+    "name": "jwt.expiration",
+    "type": "java.lang.String",
+    "description": "Time for the token to expire"
+  },
+  {
+    "name": "mail.password",
+    "type": "java.lang.String",
+    "description": "Mail's password"
+  },
+  {
+    "name": "mail.from",
+    "type": "java.lang.String",
+    "description": "Host's email address"
+  }
+]}

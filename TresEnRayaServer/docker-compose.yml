@@ -1,0 +1,43 @@
+version: '3.3'
+
+services:
+  app:
+    image: rabgonzalez/tresenraya:latest
+    container_name: tresenraya
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/tresenraya
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+      - PROFILE=production
+    depends_on:
+      - db
+    networks:
+      - apiNetwork
+    volumes:
+      - app_uploads:/uploads
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1q2w3e4r
+      MYSQL_DATABASE: tresenraya
+      MYSQL_USER: ruben
+      MYSQL_PASSWORD: 1q2w3e4r
+      MYSQL_PORT: 3306
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./src/main/resources/tresenraya.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3307:3306"
+    networks:
+      - apiNetwork
+
+volumes:
+  db_data:
+  app_uploads:
+networks:
+  apiNetwork:
